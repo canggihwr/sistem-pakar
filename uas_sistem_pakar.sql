@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 20 Des 2022 pada 03.02
+-- Waktu pembuatan: 27 Des 2022 pada 14.53
 -- Versi server: 5.7.33
 -- Versi PHP: 8.1.6
 
@@ -54,6 +54,31 @@ INSERT INTO `certain_factor` (`id`, `kondisi`, `cf`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `diagnosas`
+--
+
+CREATE TABLE `diagnosas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `diagnosa_id` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_diagnosa` json NOT NULL,
+  `kondisi` json NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `diagnosas`
+--
+
+INSERT INTO `diagnosas` (`id`, `diagnosa_id`, `data_diagnosa`, `kondisi`, `created_at`, `updated_at`) VALUES
+(1, '63aad18582e84', '[{\"value\": \"0.4\", \"kode_depresi\": \"P001\"}, {\"value\": \"0.64\", \"kode_depresi\": \"P002\"}, {\"value\": \"0.76\", \"kode_depresi\": \"P003\"}, {\"value\": \"0.968\", \"kode_depresi\": \"P004\"}]', '[[\"G001\", \"0.8\"], [\"G008\", \"0.6\"], [\"G025\", \"0.6\"], [\"G027\", \"0.6\"]]', '2022-12-27 10:05:41', '2022-12-27 10:05:41'),
+(2, '63aad1c62954e', '[{\"value\": \"0.4\", \"kode_depresi\": \"P001\"}, {\"value\": \"0.4\", \"kode_depresi\": \"P002\"}, {\"value\": \"0.76\", \"kode_depresi\": \"P003\"}, {\"value\": \"0.968\", \"kode_depresi\": \"P004\"}]', '[[\"G001\", \"1\"], [\"G025\", \"1\"], [\"G027\", \"1\"]]', '2022-12-27 10:06:46', '2022-12-27 10:06:46'),
+(3, '63aafc8ae957d', '[{\"value\": \"0.4\", \"kode_depresi\": \"P001\"}, {\"value\": \"0.76\", \"kode_depresi\": \"P002\"}, {\"value\": \"1\", \"kode_depresi\": \"P003\"}, {\"value\": \"0.952\", \"kode_depresi\": \"P004\"}]', '[[\"G001\", \"0.8\"], [\"G022\", \"0.8\"], [\"G023\", \"0.8\"], [\"G024\", \"0.6\"], [\"G025\", \"0.8\"]]', '2022-12-27 13:09:14', '2022-12-27 13:09:14'),
+(4, '63ab0625258db', '[{\"value\": \"0.76\", \"kode_depresi\": \"P001\"}, {\"value\": \"0.784\", \"kode_depresi\": \"P002\"}, {\"value\": \"0.6\", \"kode_depresi\": \"P003\"}, {\"value\": \"0.952\", \"kode_depresi\": \"P004\"}]', '[[\"G001\", \"0.6\"], [\"G005\", \"0.8\"], [\"G008\", \"0.8\"], [\"G015\", \"0.6\"], [\"G018\", \"0.6\"], [\"G025\", \"0.8\"]]', '2022-12-27 13:50:13', '2022-12-27 13:50:13');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `failed_jobs`
 --
 
@@ -86,17 +111,17 @@ CREATE TABLE `gejala` (
 --
 
 INSERT INTO `gejala` (`id`, `kode_gejala`, `gejala`, `created_at`, `updated_at`) VALUES
-(1, 'G001', 'Merasa sedih', NULL, NULL),
-(2, 'G002', 'Kelelahan selakukan aktivitas', NULL, NULL),
-(3, 'G003', 'Kurang konsentrasi', NULL, NULL),
-(4, 'G004', 'Mudah Bosan', NULL, NULL),
+(1, 'G001', 'Sering Merasa Sedih', NULL, NULL),
+(2, 'G002', 'Sering kelelahan melakukan aktifitas ringan', NULL, NULL),
+(3, 'G003', 'Kurang konsentrasi dalam belajar ', NULL, NULL),
+(4, 'G004', 'Mudah merasa bosan', NULL, NULL),
 (5, 'G005', 'Sering Melamun', NULL, NULL),
-(6, 'G006', 'Tidak semangat', NULL, NULL),
+(6, 'G006', 'Tidak semangat melakukan sesuatu', NULL, NULL),
 (7, 'G007', 'Merasa Risau', NULL, NULL),
 (8, 'G008', 'Pesimis', NULL, NULL),
 (9, 'G009', 'Sering menangis secara tiba-tiba', NULL, NULL),
-(10, 'G010', 'Gangguan Tidur', NULL, NULL),
-(11, 'G011', 'Cemas Berlebihan', NULL, NULL),
+(10, 'G010', 'Gangguan susah Tidur', NULL, NULL),
+(11, 'G011', 'Merasa Cemas Berlebihan', NULL, NULL),
 (12, 'G012', 'Kecewa dengan diri sendiri', NULL, NULL),
 (13, 'G013', 'Terganggu dengan banyak hal', NULL, NULL),
 (14, 'G014', 'Sering murung', NULL, NULL),
@@ -106,7 +131,7 @@ INSERT INTO `gejala` (`id`, `kode_gejala`, `gejala`, `created_at`, `updated_at`)
 (18, 'G018', 'Merasa dihakimi', NULL, NULL),
 (19, 'G019', 'Membenci Diri Sendiri', NULL, NULL),
 (20, 'G020', 'Mudah tersinggung', NULL, NULL),
-(21, 'G021', 'Kehilangan Nafsu makan', NULL, NULL),
+(21, 'G021', 'Kehilangan Nafsu makan ', NULL, NULL),
 (22, 'G022', 'Khawatir tentang penampilan', NULL, NULL),
 (23, 'G023', 'Mudah Marah', NULL, NULL),
 (24, 'G024', 'Suka menyendiri', NULL, NULL),
@@ -124,7 +149,6 @@ INSERT INTO `gejala` (`id`, `kode_gejala`, `gejala`, `created_at`, `updated_at`)
 
 CREATE TABLE `keputusan` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode_keputusan` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kode_gejala` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kode_depresi` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mb` double(8,2) NOT NULL,
@@ -137,8 +161,64 @@ CREATE TABLE `keputusan` (
 -- Dumping data untuk tabel `keputusan`
 --
 
-INSERT INTO `keputusan` (`id`, `kode_keputusan`, `kode_gejala`, `kode_depresi`, `mb`, `md`, `created_at`, `updated_at`) VALUES
-(1, 'K001', 'G028', 'P003', 0.30, 0.40, '2022-12-19 18:42:55', '2022-12-19 18:42:55');
+INSERT INTO `keputusan` (`id`, `kode_gejala`, `kode_depresi`, `mb`, `md`, `created_at`, `updated_at`) VALUES
+(1, 'G001', 'P001', 0.60, 0.20, NULL, NULL),
+(2, 'G002', 'P001', 0.40, 0.20, NULL, NULL),
+(3, 'G003', 'P001', 1.00, 0.00, NULL, NULL),
+(4, 'G004', 'P001', 0.40, 0.20, NULL, NULL),
+(5, 'G005', 'P001', 0.80, 0.20, NULL, NULL),
+(6, 'G007', 'P001', 0.40, 0.20, NULL, NULL),
+(7, 'G001', 'P002', 0.60, 0.20, NULL, NULL),
+(8, 'G002', 'P002', 0.60, 0.20, NULL, NULL),
+(9, 'G006', 'P002', 1.00, 0.00, NULL, NULL),
+(10, 'G008', 'P002', 0.60, 0.20, NULL, NULL),
+(11, 'G010', 'P002', 0.60, 0.20, NULL, NULL),
+(12, 'G011', 'P002', 0.60, 0.20, NULL, NULL),
+(13, 'G014', 'P002', 0.80, 0.00, NULL, NULL),
+(14, 'G015', 'P002', 0.60, 0.20, NULL, NULL),
+(15, 'G016', 'P002', 0.80, 0.00, NULL, NULL),
+(16, 'G022', 'P002', 0.60, 0.00, NULL, NULL),
+(17, 'G001', 'P003', 0.80, 0.20, NULL, NULL),
+(18, 'G009', 'P003', 0.80, 0.20, NULL, NULL),
+(19, 'G010', 'P003', 0.80, 0.20, NULL, NULL),
+(20, 'G011', 'P003', 0.60, 0.20, NULL, NULL),
+(21, 'G012', 'P003', 0.80, 0.20, NULL, NULL),
+(22, 'G013', 'P003', 1.00, 0.00, NULL, NULL),
+(23, 'G016', 'P003', 1.00, 0.00, NULL, NULL),
+(24, 'G017', 'P003', 0.80, 0.20, NULL, NULL),
+(25, 'G020', 'P003', 0.60, 0.20, NULL, NULL),
+(26, 'G022', 'P003', 1.00, 0.00, NULL, NULL),
+(27, 'G023', 'P003', 0.80, 0.20, NULL, NULL),
+(28, 'G027', 'P003', 0.60, 0.20, NULL, NULL),
+(29, 'G001', 'P004', 0.80, 0.00, NULL, NULL),
+(30, 'G009', 'P004', 1.00, 0.00, NULL, NULL),
+(31, 'G010', 'P004', 0.80, 0.00, NULL, NULL),
+(32, 'G012', 'P004', 1.00, 0.00, NULL, NULL),
+(33, 'G013', 'P004', 0.20, 0.20, NULL, NULL),
+(34, 'G016', 'P004', 1.00, 0.00, NULL, NULL),
+(35, 'G018', 'P004', 0.60, 0.20, NULL, NULL),
+(36, 'G019', 'P004', 0.80, 0.20, NULL, NULL),
+(37, 'G020', 'P004', 0.80, 0.00, NULL, NULL),
+(38, 'G021', 'P004', 0.40, 0.20, NULL, NULL),
+(39, 'G024', 'P004', 0.60, 0.20, NULL, NULL),
+(40, 'G025', 'P004', 0.80, 0.20, NULL, NULL),
+(41, 'G026', 'P004', 0.40, 0.20, NULL, NULL),
+(42, 'G027', 'P004', 0.60, 0.00, NULL, NULL),
+(43, 'G028', 'P004', 1.00, 0.00, NULL, NULL),
+(44, 'G029', 'P004', 0.80, 0.00, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kode__gejalas`
+--
+
+CREATE TABLE `kode__gejalas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `body` json NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -159,10 +239,10 @@ CREATE TABLE `kondisi_users` (
 --
 
 INSERT INTO `kondisi_users` (`id`, `kondisi`, `nilai`, `created_at`, `updated_at`) VALUES
-(1, 'Tidak', 0.00, NULL, NULL),
-(2, 'Mungkin', 0.40, NULL, NULL),
-(3, 'Kemungkinan Besar', 0.60, NULL, NULL),
-(4, 'Hampir Pasti', 0.80, NULL, NULL);
+(1, 'Mungkin', 0.40, NULL, NULL),
+(2, 'Kemungkinan Besar', 0.60, NULL, NULL),
+(3, 'Hampir Pasti', 0.80, NULL, NULL),
+(4, 'Pasti', 1.00, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,10 +266,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2022_12_19_072517_create_gejalas_table', 1),
-(6, '2022_12_19_072938_create_tingkat_depresis_table', 1),
-(7, '2022_12_20_020104_create_keputusans_table', 1),
-(8, '2022_12_20_022018_create_certain_factors_table', 1),
-(9, '2022_12_20_023708_create_kondisi_users_table', 1);
+(6, '2022_12_20_020104_create_keputusans_table', 1),
+(7, '2022_12_20_022018_create_certain_factors_table', 1),
+(8, '2022_12_20_023708_create_kondisi_users_table', 1),
+(9, '2022_12_21_202642_create_diagnosas_table', 1),
+(10, '2022_12_22_143013_create_tingkat_depresis_table', 1),
+(11, '2022_12_26_225203_create_kode__gejalas_table', 1);
 
 -- --------------------------------------------------------
 
@@ -274,6 +356,12 @@ ALTER TABLE `certain_factor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `diagnosas`
+--
+ALTER TABLE `diagnosas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -290,6 +378,12 @@ ALTER TABLE `gejala`
 -- Indeks untuk tabel `keputusan`
 --
 ALTER TABLE `keputusan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `kode__gejalas`
+--
+ALTER TABLE `kode__gejalas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -342,6 +436,12 @@ ALTER TABLE `certain_factor`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT untuk tabel `diagnosas`
+--
+ALTER TABLE `diagnosas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -357,7 +457,13 @@ ALTER TABLE `gejala`
 -- AUTO_INCREMENT untuk tabel `keputusan`
 --
 ALTER TABLE `keputusan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT untuk tabel `kode__gejalas`
+--
+ALTER TABLE `kode__gejalas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `kondisi_users`
@@ -369,7 +475,7 @@ ALTER TABLE `kondisi_users`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
