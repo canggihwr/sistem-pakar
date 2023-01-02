@@ -2,9 +2,11 @@
 @section('title', 'Form Diagnosa')
 
 @section('cl_content')
+
     <div class="container">
        <div class="row mx-auto">
         <div class="col-lg-10 mx-auto">
+
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -116,9 +118,12 @@
             </div>
         </div>
 
+        <div >
+            {{-- <a style="align-content: flex-end" href="/" class="btn btn-primary"> KEMBALI</a> --}}
+        </div>
+
         @include('components.cl_article')
 
        </div>
     </div>
 @endsection
-
